@@ -40,12 +40,41 @@ nav ul li a {
     color: #ffffff;
     font-weight: bold;
 }
+.quote-button-container {
+    position: relative;
+}
 
 .quote-button {
-    background-color: transparent;
-    border: 2px solid #ffffff;
-    padding: 5px 15px;
-    border-radius: 20px;
+    position: relative;
+    padding: 10px 15px;
+    margin-bottom: 50px;
+    color: #fff;
+    background: linear-gradient(45deg, #ff0057, #0099ff, #00ff99);
+    background-size: 300% 300%;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 0, 87, 0.5), 0 0 30px rgba(0, 153, 255, 0.5), 0 0 40px rgba(0, 255, 153, 0.5);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    animation: gradientAnimation 3s ease infinite;
+}
+
+.quote-button:hover {
+    box-shadow: 0 0 30px #844157, 0 0 40px rgba(0, 153, 255, 1), 0 0 50px rgba(0, 255, 153, 1);
+    transform: scale(1.05);
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 main {
@@ -512,4 +541,198 @@ main {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 20px;
+}
+/* Startup Screen */
+#startup-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0D0E11;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+    transition: opacity 1s ease-out;
+    overflow: hidden;
+}
+
+.startup-animation {
+    text-align: center;
+    color: #1AB1E3;
+    z-index: 2;
+    animation: fadeIn 3s ease-in-out forwards;
+}
+
+.startup-title {
+    font-size: 3em;
+    margin: 0;
+    animation: glitch 2s infinite;
+}
+
+.startup-subtitle {
+    font-size: 1.5em;
+    margin: 10px 0 0;
+    animation: fadeInText 3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: 5px 5px #1AB1E3, -5px -5px #ff0057;
+    }
+    50% {
+        text-shadow: -5px -5px #1AB1E3, 5px 5px #ff0057;
+    }
+    100% {
+        text-shadow: 5px 5px #1AB1E3, -5px -5px #ff0057;
+    }
+}
+
+/* Background Animation */
+#startup-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.1), rgba(0,0,0,0) 70%);
+    animation: pulse 3s infinite;
+    z-index: 1;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+.particle {
+    position: absolute;
+    background-color: #1AB1E3;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: moveParticles 5s linear infinite;
+}
+
+@keyframes moveParticles {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+    100% {
+        transform: translateY(-100vh) translateX(100vw) scale(0.5);
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .intro {
+        flex-direction: column;
+    }
+
+    .intro-text {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .intro-image img {
+        width: 80%;
+        margin: 20px 0;
+    }
+
+    .testimonial-table #testimonial-text {
+        width: 100%;
+        padding: 0;
+    }
+
+    .testimonial-card p {
+        max-width: 100%;
+    }
+
+    .slider {
+        width: 100%;
+    }
+
+    .services {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .call-to-action-section {
+        flex-direction: column;
+    }
+
+    .cta-content, .stats-section {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .profile-section .top-row, .profile-section .bottom-row {
+        flex-direction: column;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-icon img {
+        margin: 0 0 20px 0;
+    }
+
+    .top-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .top-bar .contact-info, .top-bar .social-icons {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .top-bar .contact-info span {
+        display: block;
+        margin: 5px 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    .quote-button-container {
+        margin: 10px 0;
+    }
 }
